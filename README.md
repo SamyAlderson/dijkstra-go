@@ -1,54 +1,72 @@
-# Dijkstra's Algorithm in Go
+# dijkstra-go
+A simple Go implementation of Dijkstra's algorithm for shortest paths in weighted graphs.
 
-Implementation of Dijkstra's algorithm in Go for finding the shortest path in a weighted graph.
+## What it does
+Dijkstra's algorithm is used to find the shortest path between nodes in a weighted graph. This implementation uses a priority queue to efficiently explore the graph and calculate the shortest distances.
 
-## What's this?
-
-This project provides a Go implementation of Dijkstra's algorithm for finding the shortest path in a weighted graph. It includes a weighted graph data structure and unit tests for both the algorithm and the graph.
-
-## Install
-
-To install the project, run:
-
+## Installation
+To install the package, run:
 ```bash
-go get -u github.com/samyalderson/dijkstra-go
+go get github.com/samyalderson/dijkstra-go
 ```
-
 ## Usage
+To use the package, import and instantiate the `Dijkstra` struct, then call the `Run` method on it:
+```go
+import (
+	"github.com/samyalderson/dijkstra-go/graph"
+	"github.com/samyalderson/dijkstra-go/dijkstra"
+)
 
-To use the project, run the `main.go` file:
+func main() {
+	g := graph.NewWeightedGraph()
+	// populate the graph with nodes and edges...
 
-```bash
-go run main.go
+	d := dijkstra.NewDijkstra(g)
+	d.Run("start", "end")
+	// d.Distances now contains the shortest distances from the start node to all other nodes
+}
 ```
-
-This will prompt you to enter the graph edges and the starting node. The program will then output the shortest path from the starting node to all other nodes in the graph.
-
-## Build from Source
-
-To build the project from source, run:
-
+## Build from source
+To build the package from source, navigate to the project root and run:
 ```bash
-make build
+go build .
 ```
+This will generate an executable named `dijkstra-go` in the current directory.
 
-## Project Structure
+## Running tests
+To run the package's unit tests, navigate to the project root and run:
+```bash
+go test .
+```
+This will run the `graph_test.go` and `dijkstra_test.go` test files.
 
-The project consists of the following files:
-
-* `main.go`: Main entry point
-* `dijkstra.go`: Dijkstra's algorithm implementation
-* `graph.go`: Weighted graph data structure
-* `test_dijkstra_test.go`: Unit tests for Dijkstra's algorithm
-* `test_graph_test.go`: Unit tests for weighted graph
-* `go.mod`: Go module file
-* `go.sum`: Go checksum file
-* `Makefile`: Build script for Go project
+## Project structure
+- `graph.go`: implementation of a weighted graph data structure
+- `dijkstra.go`: implementation of Dijkstra's algorithm
+- `graph_test.go`: unit tests for the weighted graph
+- `dijkstra_test.go`: unit tests for Dijkstra's algorithm
+- `README.md`: this file
+- `LICENSE`: MIT license text
 
 ## License
+MIT License
 
-This project is licensed under the MIT license. See the `LICENSE` file for details.
+Copyright (c) 2024 Samy Alderson
 
-## Contributing
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
 
-Pull requests are welcome. If you'd like to contribute, please fork the repository and submit a pull request.
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
