@@ -1,55 +1,54 @@
-# dijkstra-go
-A simple Go implementation of Dijkstra's algorithm for shortest paths in weighted graphs.
+# Dijkstra's Algorithm in Go
+Find the shortest path in a weighted graph with ease
 
 ## What it does
-Dijkstra's algorithm is used to find the shortest path between nodes in a weighted graph. This implementation uses a priority queue to efficiently explore the graph and calculate the shortest distances.
 
-## Installation
-To install the package, run:
+Dijkstra's algorithm is a well-known solution for finding the shortest path in a weighted graph. This Go implementation provides a simple and efficient way to compute the shortest distances and paths between nodes in a graph.
+
+## Install
+
+To install dijkstra-go, run:
 ```bash
-go get github.com/samyalderson/dijkstra-go
+go get github.com/samyaldrson/dijkstra-go
 ```
 ## Usage
-To use the package, import and instantiate the `Dijkstra` struct, then call the `Run` method on it:
+
+To use dijkstra-go, import the package and run the algorithm on your graph:
 ```go
 import (
-	"github.com/samyalderson/dijkstra-go/graph"
-	"github.com/samyalderson/dijkstra-go/dijkstra"
+	"github.com/samyaldrson/dijkstra-go"
 )
 
 func main() {
-	g := graph.NewWeightedGraph()
-	// populate the graph with nodes and edges...
-
-	d := dijkstra.NewDijkstra(g)
-	d.Run("start", "end")
-	// d.Distances now contains the shortest distances from the start node to all other nodes
+	graph := dijkstra.Graph{
+		// define your graph here
+	}
+	distances, paths := dijkstra.Dijkstra(graph)
+	fmt.Println(distances)
+	fmt.Println(paths)
 }
 ```
-## Build from source
-To build the package from source, navigate to the project root and run:
-```bash
-go build .
-```
-This will generate an executable named `dijkstra-go` in the current directory.
+## Build from Source
 
-## Running tests
-To run the package's unit tests, navigate to the project root and run:
+To build from source, run:
 ```bash
-go test .
+go build -o dijkstra-go main.go
 ```
-This will run the `graph_test.go` and `dijkstra_test.go` test files.
+## Running Tests
 
-## Project structure
-- `graph.go`: implementation of a weighted graph data structure
-- `dijkstra.go`: implementation of Dijkstra's algorithm
-- `graph_test.go`: unit tests for the weighted graph
-- `dijkstra_test.go`: unit tests for Dijkstra's algorithm
-- `README.md`: this file
-- `LICENSE`: MIT license text
+To run the test suite, run:
+```bash
+go test -v
+```
+## Project Structure
+
+* `dijkstra.go`: Dijkstra's algorithm implementation
+* `graph.go`: Graph data structure
+* `test_dijkstra.go`: Test suite for dijkstra's algorithm
+* `test_graph.go`: Test suite for graph data structure
+* `main.go`: Example usage
 
 ## License
-MIT License
 
 Copyright (c) 2026 SamyAlderson
 
