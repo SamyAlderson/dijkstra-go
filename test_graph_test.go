@@ -30,7 +30,6 @@ func TestGraph(t *testing.T) {
 		t.Fatal(err)
 	}
 
-	// This should fail because there's already a vertex with this name
 	if err := graph.AddVertex("A"); err != nil {
 		if !errors.Is(err, ErrVertexExists) {
 			t.Errorf("expected ErrVertexExists, got %v", err)
@@ -104,10 +103,8 @@ func TestGraphVertices(t *testing.T) {
 		t.Fatal(err)
 	}
 
-	if err := graph.AddVertex("A"); err != nil {
-		if !errors.Is(err, ErrVertexExists) {
-			t.Errorf("expected ErrVertexExists, got %v", err)
-		}
+	if err := graph.AddVertex("A"); err == nil {
+		t.Errorf("expected ErrVertexExists, got nil")
 	}
 
 	vertices, err := graph.Vertices()
