@@ -1,15 +1,11 @@
-__pycache__/
-*.pyc
-.pytest_cache/
-.env
-*.egg-info/
-dist/
-build/
-.venv/
-node_modules/
-target/
-bin/
-obj/
-*.o
-*.so
-*.dylib/
+# .gitignore
+# ignore go build files
+*.go.o
+*.go.p
+# ignore go build directories
+*_test/
+# ignore go build files in vendor directory
+vendor/_test/
+# ignore go build files in vendor directory
+vendor/*.go.o
+vendor/*.go.p
