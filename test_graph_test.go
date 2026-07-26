@@ -41,8 +41,8 @@ func TestGraph(t *testing.T) {
 		t.Fatal(err)
 	}
 
-	if len(paths) != 3 {
-		t.Errorf("expected 3 paths, got %v", len(paths))
+	if len(paths) != 4 {
+		t.Errorf("expected 4 paths, got %v", len(paths))
 	}
 
 	// We expect all vertices to have a path to themselves
@@ -114,5 +114,31 @@ func TestGraphVertices(t *testing.T) {
 
 	if len(vertices) != 3 {
 		t.Errorf("expected 3 vertices, got %v", len(vertices))
+	}
+}
+
+func TestGraphErrorHandling(t *testing.T) {
+	graph := NewGraph()
+
+	if err := graph.AddEdge("A", "B", -1); err == nil {
+		t.Errorf("expected error for negative weight, got nil")
+	}
+
+	if err := graph.AddVertex("A"); err != nil {
+		if !errors.Is(err, ErrVertexExists) {
+			t.Errorf("expected ErrVertexExists, got %v", err)
+		}
+	}
+
+	if err := graph.AddEdge("A", "B", 1); err != nil {
+		t.Fatal(err)
+	}
+
+	if err := graph.AddEdge("B", "A", 2); err != nil {
+		t.Fatal(err)
+	}
+
+	if err := graph.AddEdge("A", "B", 3); err == nil {
+		t.Errorf("expected error for duplicate edge, got nil")
 	}
 }
