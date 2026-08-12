@@ -1,5 +1,3 @@
-// main.go: Main entry point for dijkstra-go
-
 package main
 
 import (
@@ -45,10 +43,26 @@ func main() {
 	fmt.Println(path)
 }
 
-func exampleUsage() {
-	fmt.Println("Running Dijkstra's algorithm on a sample graph...")
+func printError(err error) {
+	if err != nil {
+		log.Fatal(errors.Wrap(err, "Error running Dijkstra's algorithm"))
+	}
 }
 
-func printError(err error) {
-	log.Fatal(errors.Wrap(err, "Error running Dijkstra's algorithm"))
+func runExample() {
+	fmt.Println("Running Dijkstra's algorithm on a sample graph...")
+	distances, predecessors := dijkstra.Run(context.Background(), graph.NewWeightedGraph(5), 0)
+	fmt.Println("Shortest Distances:")
+	for node, distance := range distances {
+		fmt.Printf("Node %d: %d\n", node, distance)
+	}
+	fmt.Println("Predecessors:")
+	for node, predecessor := range predecessors {
+		fmt.Printf("Node %d: %d\n", node, predecessor)
+	}
+}
+
+func main() {
+	runExample()
+	printError(nil)
 }
